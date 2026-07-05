@@ -1,0 +1,419 @@
+/* ==========================================================================
+   CSS Variables (Theming System)
+   ========================================================================== */
+:root {
+  --primary-color: #6366f1;
+  --secondary-color: #8b5cf6;
+  --gradient-start: #6366f1;
+  --gradient-end: #8b5cf6;
+  --text-color: #ffffff;
+  --bg-color: #0f172a;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --transition-speed: 0.3s;
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+p {
+  line-height: 1.6;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: opacity var(--transition-speed) ease;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+body {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  min-height: 80vh;
+  width: 100%;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.hero-subheadline {
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   Form Styling
+   ========================================================================== */
+.waitlist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 32rem;
+  margin-inline: auto;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  opacity: 0.95;
+}
+
+input[type='email'] {
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #0f172a;
+  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+  transition: border-color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
+}
+
+input[type='email']::placeholder {
+  color: #64748b;
+}
+
+input[type='email']:focus {
+  border-color: var(--primary-color);
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+input[type='email'][aria-invalid='true'] {
+  border-color: var(--error-color);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  min-height: 44px;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: all var(--transition-speed) ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled,
+.btn-primary[aria-busy='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Message Styling
+   ========================================================================== */
+.form-message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  display: none;
+  font-weight: 500;
+  text-align: center;
+  animation: fade-in var(--transition-speed) ease-out;
+}
+
+.form-message[hidden] {
+  display: none;
+}
+
+.form-message.is-visible,
+.form-message:not([hidden]) {
+  display: block;
+}
+
+.form-message--success {
+  background: var(--success-color);
+  color: white;
+}
+
+.form-message--error {
+  background: var(--error-color);
+  color: white;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Social Proof Section
+   ========================================================================== */
+.social-proof {
+  padding: 2rem;
+  text-align: center;
+}
+
+.social-proof-placeholder {
+  opacity: 0.8;
+  font-size: 0.9375rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+  padding: 2rem;
+  background-color: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.copyright {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   Skip Link
+   ========================================================================== */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-radius: 6px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Media Queries - Tablet
+   ========================================================================== */
+@media (min-width: 768px) {
+  .hero {
+    padding: 4rem 3rem;
+    min-height: 85vh;
+  }
+
+  .waitlist-form {
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .form-field {
+    flex: 1;
+    min-width: 16rem;
+  }
+
+  .waitlist-form .btn {
+    flex-shrink: 0;
+  }
+
+  .form-message {
+    flex-basis: 100%;
+  }
+
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   Media Queries - Desktop
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .hero {
+    padding: 6rem 4rem;
+    min-height: 90vh;
+  }
+
+  .hero-content {
+    max-width: 48rem;
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    margin-bottom: 2.5rem;
+  }
+
+  .waitlist-form {
+    max-width: 36rem;
+    gap: 1rem;
+  }
+
+  footer {
+    padding: 2.5rem 4rem;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+.hidden {
+  display: none !important;
+}
+
+.sr-only,
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
