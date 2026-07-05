@@ -1,0 +1,33 @@
+{
+  "files_created": [
+    "favicon.svg",
+    "favicon.ico"
+  ],
+  "files_modified": [
+    ".gitignore",
+    "README.md"
+  ],
+  "decisions": [
+    {
+      "what": "Rewrote .gitignore with sectioned rules (OS, editor, temp, dependency, build, env, coverage, package manager logs, misc) and preserved the pre-existing arvad_task_files/ ignore entry.",
+      "why": "Specification 001 asked for a fresh .gitignore covering OS/editor/temp artifacts with commented sections; the existing Python-centric ignore did not match the static-HTML tech stack for this project."
+    },
+    {
+      "what": "Replaced the stub README with a full waitlist landing page README containing Features, Deployment (GitHub Pages), Customization, Form Configuration (Formspree), Analytics Setup (GA4 + Plausible), and MIT License sections.",
+      "why": "Specification 002 explicitly required each of these sections with code blocks, so the placeholder single-line README was expanded to meet the documented structure."
+    },
+    {
+      "what": "Created favicon.svg as a 32x32 SVG envelope glyph on a rounded-square background using a diagonal indigo-to-purple linear gradient (#6366f1 → #a855f7).",
+      "why": "Specification 003 called for a minimal, recognizable geometric shape (envelope) rendered with a purple/indigo gradient and a viewBox of 0 0 32 32; the envelope was chosen because it maps directly to the waitlist/email-capture concept."
+    },
+    {
+      "what": "Generated a real binary favicon.ico containing both 16x16 and 32x32 32bpp BMP images sharing a solid indigo color, written via a Python script that constructs valid ICONDIR / ICONDIRENTRY / BITMAPINFOHEADER structures.",
+      "why": "Specification 004 required a minimal valid ICO file structure with 16x16 and 32x32 sizes; producing a spec-compliant binary avoids browser 404s while remaining a lightweight placeholder that can be replaced with a rendered version of favicon.svg later."
+    }
+  ],
+  "tools_used": [
+    "Read",
+    "Write",
+    "Bash"
+  ]
+}
