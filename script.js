@@ -113,3 +113,25 @@ form.addEventListener('submit', async (e) => {
     showError('Network error. Please check your connection and try again.');
   }
 });
+
+// Scroll reveal animations using Intersection Observer
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!prefersReducedMotion) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target); // Stop observing after reveal
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+  }); // Trigger slightly before element fully enters viewport
+
+  document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver.observe(el));
+} else {
+  // If reduced motion is preferred, immediately reveal all elements
+  document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('revealed'));
+}

@@ -1,23 +1,27 @@
 {
-  "files_created": ["script.js"],
-  "files_modified": ["index.html"],
+  "files_created": [],
+  "files_modified": [
+    "styles.css",
+    "script.js",
+    "index.html"
+  ],
   "decisions": [
     {
-      "what": "Captured original submit button text into a constant instead of hard-coding the restore label",
-      "why": "Keeps JS decoupled from the HTML copy so changing the button label in index.html doesn't silently desync with the JS restoration logic"
+      "what": "Appended scroll reveal CSS rules to the end of styles.css",
+      "why": "Placed after existing utilities to keep animation-specific rules grouped and maintain cascade order without disrupting existing styles"
     },
     {
-      "what": "Cleared textContent when hiding message containers",
-      "why": "Prevents stale content from being re-announced by aria-live regions if the same container is shown again later"
+      "what": "Appended Intersection Observer logic after the existing form submit handler in script.js",
+      "why": "Specification explicitly stated 'after existing code'; keeps scroll reveal logic independent from form logic"
     },
     {
-      "what": "Placed <script src=\"script.js\" defer> immediately before </body>",
-      "why": "Matches the spec exactly and preserves defer semantics so DOM is parsed before the script runs"
-    },
-    {
-      "what": "Parsed Formspree error responses for both `data.error` and `data.errors[]` shapes",
-      "why": "Formspree returns validation problems under `errors` and generic failures under `error`; handling both surfaces actionable messages to the user"
+      "what": "Added data-reveal attribute to <section class='social-proof'> and <footer>",
+      "why": "Both elements are below the fold as required by the specification, enabling the observer to trigger reveal on scroll"
     }
   ],
-  "tools_used": ["Read", "Write", "Edit"]
+  "tools_used": [
+    "Read",
+    "Edit",
+    "Write"
+  ]
 }
