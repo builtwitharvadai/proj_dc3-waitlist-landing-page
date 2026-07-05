@@ -1,18 +1,22 @@
 {
-  "files_created": ["styles.css"],
+  "files_created": ["script.js"],
   "files_modified": ["index.html"],
   "decisions": [
     {
-      "what": "Created styles.css with full theming (CSS custom properties), gradient background, hero flex layout, form/button styling, animated messages, tablet/desktop breakpoints, reduced-motion support, and utility classes",
-      "why": "Spec required a comprehensive CSS system with CSS custom properties, gradient design, responsive layout, and accessibility features"
+      "what": "Captured original submit button text into a constant instead of hard-coding the restore label",
+      "why": "Keeps JS decoupled from the HTML copy so changing the button label in index.html doesn't silently desync with the JS restoration logic"
     },
     {
-      "what": "Added <link rel=\"stylesheet\" href=\"styles.css\"> inside <head> after existing meta/favicon links and before </head>",
-      "why": "Spec required linking the new stylesheet with a relative path in the same directory, placed after meta tags and before closing head"
+      "what": "Cleared textContent when hiding message containers",
+      "why": "Prevents stale content from being re-announced by aria-live regions if the same container is shown again later"
     },
     {
-      "what": "Included .visually-hidden alongside .sr-only in the utilities block",
-      "why": "index.html uses the class name 'visually-hidden' on hidden helper text, and the spec asks for screen-reader-only styling; supporting both class names avoids leaking hidden content into the visible layout"
+      "what": "Placed <script src=\"script.js\" defer> immediately before </body>",
+      "why": "Matches the spec exactly and preserves defer semantics so DOM is parsed before the script runs"
+    },
+    {
+      "what": "Parsed Formspree error responses for both `data.error` and `data.errors[]` shapes",
+      "why": "Formspree returns validation problems under `errors` and generic failures under `error`; handling both surfaces actionable messages to the user"
     }
   ],
   "tools_used": ["Read", "Write", "Edit"]
